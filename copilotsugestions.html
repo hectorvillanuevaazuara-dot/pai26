@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Telecomunicaciones Modernas</title>
+  <style>
+    :root {
+      --azul: #0b1f4d;
+      --azul-claro: #1f5eff;
+      --cyan: #2dd4bf;
+      --gris: #f4f7fb;
+      --texto: #1a2433;
+      --blanco: #ffffff;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #eef5ff, #dfeafe);
+      color: var(--texto);
+    }
+
+    header {
+      background: linear-gradient(90deg, var(--azul), #173d8f);
+      color: var(--blanco);
+      padding: 20px 60px;
+    }
+
+    .nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 15px;
+    }
+
+    .logo {
+      font-size: 1.8rem;
+      font-weight: bold;
+      letter-spacing: 1px;
+    }
+
+    .menu {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .menu a {
+      color: var(--blanco);
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .hero {
+      padding: 80px 60px 60px;
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      align-items: center;
+      gap: 30px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .hero h1 {
+      font-size: 3rem;
+      line-height: 1.1;
+      margin-bottom: 20px;
+      color: var(--azul);
+    }
+
+    .hero p {
+      font-size: 1.1rem;
+      line-height: 1.7;
+      margin-bottom: 25px;
+      max-width: 600px;
+    }
+
+    .botones {
+      display: flex;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 14px 24px;
+      border-radius: 30px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: 0.3s ease;
+    }
+
+    .btn-primary {
+      background: var(--azul-claro);
+      color: var(--blanco);
+    }
+
+    .btn-secondary {
+      background: var(--blanco);
+      color: var(--azul);
+      border: 2px solid #dfe8ff;
+    }
+
+    .card-visual {
+      background: var(--blanco);
+      border-radius: 24px;
+      padding: 25px;
+      box-shadow: 0 20px 45px rgba(27, 59, 124, 0.12);
+    }
+
+    .signal {
+      height: 260px;
+      border-radius: 18px;
+      background: radial-gradient(circle at center, #d9edff 0%, #b2d4ff 30%, #0f2d6d 100%);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .signal::before,
+    .signal::after {
+      content: "";
+      position: absolute;
+      inset: 20% 18%;
+      border: 3px solid rgba(255,255,255,0.75);
+      border-radius: 50%;
+    }
+
+    .signal::after {
+      inset: 35% 32%;
+      border-color: rgba(255,255,255,0.9);
+    }
+
+    .signal .dot {
+      position: absolute;
+      width: 18px;
+      height: 18px;
+      background: var(--cyan);
+      border-radius: 50%;
+      right: 32%;
+      top: 48%;
+      box-shadow: 0 0 20px rgba(45, 212, 191, 0.9);
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      max-width: 1200px;
+      margin: 20px auto 0;
+      padding: 0 60px 60px;
+    }
+
+    .stat {
+      background: rgba(255,255,255,0.7);
+      border: 1px solid #dfe8ff;
+      border-radius: 18px;
+      padding: 25px 20px;
+      text-align: center;
+    }
+
+    .stat h3 {
+      color: var(--azul);
+      font-size: 2rem;
+      margin: 0 0 8px;
+    }
+
+    .stat p {
+      margin: 0;
+      color: #415067;
+    }
+
+    .section {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px 60px 40px;
+    }
+
+    .section h2 {
+      text-align: center;
+      color: var(--azul);
+      font-size: 2.2rem;
+      margin-bottom: 25px;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 25px;
+    }
+
+    .service {
+      background: var(--blanco);
+      border-radius: 20px;
+      padding: 25px 20px;
+      box-shadow: 0 10px 25px rgba(18, 34, 82, 0.08);
+    }
+
+    .service .icon {
+      width: 58px;
+      height: 58px;
+      border-radius: 16px;
+      background: linear-gradient(135deg, #dfeaff, #cfe6ff);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 18px;
+      font-size: 1.6rem;
+    }
+
+    .service h3 {
+      margin: 0 0 10px;
+      color: var(--azul);
+    }
+
+    .service p {
+      color: #46556d;
+      line-height: 1.7;
+    }
+
+    .cta {
+      background: var(--azul);
+      color: var(--blanco);
+      padding: 50px 60px;
+      text-align: center;
+      margin-top: 40px;
+    }
+
+    .cta h2 {
+      margin-top: 0;
+      font-size: 2.3rem;
+    }
+
+    .cta p {
+      max-width: 700px;
+      margin: 0 auto 25px;
+      font-size: 1.05rem;
+      line-height: 1.8;
+    }
+
+    footer {
+      text-align: center;
+      padding: 25px;
+      background: #081a3b;
+      color: #dfe9ff;
+    }
+
+    @media (max-width: 900px) {
+      .hero, .cards, .stats {
+        grid-template-columns: 1fr;
+      }
+
+      header, .hero, .section, .cta {
+        padding-left: 20px;
+        padding-right: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="nav">
+      <div class="logo">NETLINK</div>
+      <nav class="menu">
+        <a href="#inicio">Inicio</a>
+        <a href="#servicios">Servicios</a>
+        <a href="#soluciones">Soluciones</a>
+        <a href="#soporte">Soporte</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="inicio">
+      <div>
+        <h1>Conectividad que impulsa tu negocio.</h1>
+        <p>
+          Ofrecemos soluciones de telecomunicaciones diseñadas para empresas, hogares y
+          entornos digitales que requieren velocidad, seguridad y soporte continuo.
+        </p>
+        <div class="botones">
+          <a href="#servicios" class="btn btn-primary">Ver servicios</a>
+          <a href="#soporte" class="btn btn-secondary">Consultoría</a>
+        </div>
+      </div>
+
+      <div class="card-visual">
+        <div class="signal">
+          <div class="dot"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="stats">
+      <div class="stat">
+        <h3>1 Gbps</h3>
+        <p>Internet dedicado para máxima velocidad.</p>
+      </div>
+      <div class="stat">
+        <h3>99.9%</h3>
+        <p>Disponibilidad y estabilidad de red.</p>
+      </div>
+      <div class="stat">
+        <h3>24/7</h3>
+        <p>Atención técnica profesional en línea.</p>
+      </div>
+    </section>
+
+    <section class="section" id="servicios">
+      <h2>Servicios de telecomunicaciones</h2>
+      <div class="cards">
+        <article class="service">
+          <div class="icon">📡</div>
+          <h3>Internet empresarial</h3>
+          <p>Conexión de alta capacidad, baja latencia y monitoreo constante para operaciones críticas.</p>
+        </article>
+
+        <article class="service">
+          <div class="icon">📶</div>
+          <h3>Red Wi-Fi</h3>
+          <p>Soluciones inalámbricas seguras y escalables para oficinas, campus y espacios comerciales.</p>
+        </article>
+
+        <article class="service">
+          <div class="icon">🛰️</div>
+          <h3>Telefonía IP</h3>
+          <p>Comunicación moderna con llamadas, videollamadas y gestión centralizada desde la nube.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="soluciones">
+      <h2>Soluciones tecnológicas</h2>
+      <div class="cards">
+        <article class="service">
+          <div class="icon">🔒</div>
+          <h3>Seguridad de red</h3>
+          <p>Protección para infraestructura, usuarios y datos con firewall, filtrado y monitoreo inteligente.</p>
+        </article>
+
+        <article class="service">
+          <div class="icon">☁️</div>
+          <h3>Conectividad en la nube</h3>
+          <p>Integración de servicios cloud con acceso rápido y confiable para mejorar la productividad.</p>
+        </article>
+
+        <article class="service">
+          <div class="icon">🔧</div>
+          <h3>Soporte técnico</h3>
+          <p>Equipo especializado para instalación, mantenimiento y optimización de redes y equipos.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="cta" id="soporte">
+      <h2>Tu red, a la velocidad de la innovación</h2>
+      <p>
+        Diseñamos infraestructuras de telecomunicaciones que conectan personas, procesos y tecnología
+        para que tu organización crezca con seguridad y eficiencia.
+      </p>
+      <a href="#inicio" class="btn btn-secondary">Solicitar información</a>
+    </section>
+  </main>
+
+  <footer>
+    © 2026 NETLINK Telecomunicaciones · Conectando el futuro.
+  </footer>
+</body>
+</html>
