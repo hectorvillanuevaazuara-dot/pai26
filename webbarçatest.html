@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>El Tiki-Taka del Barça de Guardiola</title>
+  <style>
+    :root {
+      --azul-barca: #004d98;
+      --azul-fuerte: #0a3b77;
+      --dorado: #f4d35e;
+      --rojo: #c50d2f;
+      --negro: #111111;
+      --blanco: #ffffff;
+      --gris: #f3f5f7;
+      --gris-texto: #404b5a;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: linear-gradient(180deg, #eef4ff 0%, #f9f9f9 100%);
+      color: var(--negro);
+      line-height: 1.7;
+    }
+
+    header {
+      background: linear-gradient(90deg, var(--azul-barca), var(--azul-fuerte));
+      color: var(--blanco);
+      padding: 20px 60px;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+    }
+
+    .nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1200px;
+      margin: 0 auto;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .logo {
+      font-size: 1.9rem;
+      font-weight: 800;
+      letter-spacing: 1px;
+    }
+
+    .menu {
+      display: flex;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+
+    .menu a {
+      color: var(--blanco);
+      text-decoration: none;
+      font-weight: 700;
+      opacity: 0.95;
+    }
+
+    .hero {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 70px 60px 40px;
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 30px;
+      align-items: center;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.4rem, 4vw, 4rem);
+      color: var(--azul-fuerte);
+      line-height: 1.08;
+      margin-bottom: 15px;
+    }
+
+    .hero p {
+      font-size: 1.08rem;
+      color: var(--gris-texto);
+      max-width: 620px;
+    }
+
+    .hero-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 25px;
+    }
+
+    .badge {
+      background: var(--azul-barca);
+      color: var(--blanco);
+      border-radius: 999px;
+      padding: 10px 18px;
+      font-weight: 700;
+      font-size: 0.9rem;
+    }
+
+    .hero-card {
+      background: linear-gradient(135deg, #ffffff, #ebf3ff);
+      border: 2px solid rgba(0, 77, 152, 0.1);
+      border-radius: 24px;
+      padding: 24px;
+      box-shadow: 0 20px 55px rgba(3, 33, 78, 0.12);
+    }
+
+    .campo {
+      position: relative;
+      width: 100%;
+      height: 320px;
+      background: linear-gradient(145deg, #0f9d4e, #0a7a3c);
+      border-radius: 24px;
+      overflow: hidden;
+      border: 6px solid #f3f3f3;
+    }
+
+    .campo::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to right, transparent 0 48%, rgba(255,255,255,0.2) 48% 52%, transparent 52% 100%);
+    }
+
+    .campo::after {
+      content: "";
+      position: absolute;
+      left: 50%;
+      top: 0;
+      width: 2px;
+      height: 100%;
+      background: rgba(255,255,255,0.6);
+      transform: translateX(-50%);
+    }
+
+    .player {
+      position: absolute;
+      width: 18px;
+      height: 18px;
+      background: var(--blanco);
+      border-radius: 50%;
+      border: 3px solid var(--azul-barca);
+      box-shadow: 0 0 10px rgba(255,255,255,0.7);
+    }
+
+    .p1 { left: 32%; top: 22%; }
+    .p2 { left: 48%; top: 18%; }
+    .p3 { left: 62%; top: 32%; }
+    .p4 { left: 26%; top: 62%; }
+    .p5 { left: 50%; top: 64%; }
+    .p6 { left: 70%; top: 60%; }
+    .p7 { left: 42%; top: 45%; }
+
+    .bola {
+      position: absolute;
+      width: 12px;
+      height: 12px;
+      background: var(--dorado);
+      border-radius: 50%;
+      left: 58%;
+      top: 42%;
+      box-shadow: 0 0 8px rgba(244, 211, 94, 0.8);
+    }
+
+    .section {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 30px 60px 10px;
+    }
+
+    .section h2 {
+      font-size: clamp(1.9rem, 2vw, 2.6rem);
+      color: var(--azul-fuerte);
+      text-align: center;
+      margin-bottom: 25px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 25px;
+    }
+
+    .card {
+      background: var(--blanco);
+      border-radius: 20px;
+      padding: 26px 22px;
+      box-shadow: 0 12px 35px rgba(10, 59, 119, 0.08);
+      border: 1px solid rgba(0, 77, 152, 0.08);
+    }
+
+    .card h3 {
+      color: var(--azul-barca);
+      margin-top: 0;
+      font-size: 1.4rem;
+    }
+
+    .card p {
+      margin: 0;
+      color: var(--gris-texto);
+    }
+
+    .quote {
+      background: linear-gradient(90deg, var(--azul-barca), var(--azul-fuerte));
+      color: var(--blanco);
+      margin-top: 50px;
+      padding: 50px 60px;
+      text-align: center;
+    }
+
+    .quote blockquote {
+      max-width: 800px;
+      margin: 0 auto;
+      font-size: clamp(1.2rem, 2vw, 2rem);
+      font-weight: 700;
+      line-height: 1.5;
+    }
+
+    .timeline {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 30px 0 70px;
+    }
+
+    .timeline-item {
+      display: grid;
+      grid-template-columns: 120px 1fr;
+      gap: 20px;
+      margin-bottom: 24px;
+      align-items: start;
+    }
+
+    .year {
+      font-size: 1.6rem;
+      font-weight: 800;
+      color: var(--azul-barca);
+      background: #eaf2ff;
+      border-radius: 12px;
+      padding: 12px 14px;
+      text-align: center;
+    }
+
+    .timeline-content {
+      background: var(--blanco);
+      border-radius: 18px;
+      padding: 20px 22px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    }
+
+    .timeline-content h3 {
+      margin: 0 0 8px;
+      color: var(--azul-fuerte);
+    }
+
+    .timeline-content p {
+      margin: 0;
+      color: var(--gris-texto);
+    }
+
+    footer {
+      background: #081b34;
+      color: #dfeaff;
+      text-align: center;
+      padding: 20px;
+      font-size: 0.95rem;
+    }
+
+    @media (max-width: 900px) {
+      .hero, .grid {
+        grid-template-columns: 1fr;
+      }
+
+      header, .hero, .section, .quote {
+        padding-left: 20px;
+        padding-right: 20px;
+      }
+
+      .timeline-item {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="nav">
+      <div class="logo">FC BARCELONA</div>
+      <nav class="menu">
+        <a href="#inicio">Inicio</a>
+        <a href="#principios">Principios</a>
+        <a href="#historia">Historia</a>
+        <a href="#impacto">Impacto</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="inicio">
+      <div>
+        <h1>El tiki-taka del Barça de Guardiola</h1>
+        <p>
+          El estilo del Barça de Pep Guardiola no era solo fútbol. Era una filosofía basada en el
+          control del balón, la paciencia, la circulación rápida y la presión alta. Un juego que
+          convertía cada pase en una amenaza y cada pérdida en una oportunidad de recuperar el balón.
+        </p>
+        <div class="hero-badges">
+          <span class="badge">Pase corto</span>
+          <span class="badge">Posesión</span>
+          <span class="badge">Presión alta</span>
+        </div>
+      </div>
+
+      <div class="hero-card">
+        <div class="campo" aria-label="Campo de fútbol con jugadores">
+          <div class="player p1"></div>
+          <div class="player p2"></div>
+          <div class="player p3"></div>
+          <div class="player p4"></div>
+          <div class="player p5"></div>
+          <div class="player p6"></div>
+          <div class="player p7"></div>
+          <div class="bola"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="principios">
+      <h2>Principios del tiki-taka</h2>
+      <div class="grid">
+        <article class="card">
+          <h3>1. Posesión</h3>
+          <p>El equipo intentaba controlar el juego con mucha paciencia para abrir huecos y romper líneas defensivas.</p>
+        </article>
+
+        <article class="card">
+          <h3>2. Pase y movimiento</h3>
+          <p>Los jugadores se desplazaban constantemente para ofrecer ángulos de pase y crear superioridad numérica.</p>
+        </article>
+
+        <article class="card">
+          <h3>3. Presión intensiva</h3>
+          <p>Cuando perdían la pelota, intentaban recuperarla enseguida, evitando que el rival organizara su ataque.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="quote">
+      <blockquote>
+        “No se trata solo de tocar la pelota, sino de tocarla con intención, con rapidez y con sentido.”
+      </blockquote>
+    </section>
+
+    <section class="section" id="historia">
+      <h2>Historia y evolución</h2>
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="year">2008</div>
+          <div class="timeline-content">
+            <h3>La base del proyecto</h3>
+            <p>Guardiola toma el mando y empieza a imponer una idea basada en la posesión, la paciencia y la presión alta.</p>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="year">2009</div>
+          <div class="timeline-content">
+            <h3>El triplete</h3>
+            <p>La plantilla culmina una temporada histórica con La Liga, la Copa del Rey y la Champions League.</p>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="year">2011</div>
+          <div class="timeline-content">
+            <h3>Máxima expresión</h3>
+            <p>El Barça alcanza una de sus mejores versiones con un fútbol vistoso, preciso y casi imposible de parar.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="impacto">
+      <h2>Impacto en el fútbol</h2>
+      <div class="grid">
+        <article class="card">
+          <h3>Estilo único</h3>
+          <p>Su influencia se vio en muchos equipos que adoptaron la idea de controlar el balón y atacar con paciencia.</p>
+        </article>
+
+        <article class="card">
+          <h3>Jugadores clave</h3>
+          <p>Xavi, Iniesta, Busquets, Messi y Fabregas fueron piezas fundamentales de la estructura del equipo.</p>
+        </article>
+
+        <article class="card">
+          <h3>Legado</h3>
+          <p>El tiki-taka del Barça de Guardiola sigue siendo referencia para entrenadores y aficionados del fútbol moderno.</p>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    © 2026 | El gran estilo del Barça de Guardiola
+  </footer>
+</body>
+</html>
